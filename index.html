@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shivansh Singh Bhadouria — AI / ML Engineer</title>
+  <meta name="description" content="Portfolio of Shivansh Singh Bhadouria — AI/ML Engineer specialising in RAG systems, LLMs, on-device AI inference, and distributed Java backend systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:       #0c0c0c;
+      --ink-2:     #3a3a3a;
+      --ink-3:     #6b6b6b;
+      --ink-4:     #9b9b9b;
+      --bg:        #ffffff;
+      --bg-2:      #f7f7f5;
+      --bg-3:      #f0f0ec;
+      --border:    #e4e4df;
+      --border-2:  #d0d0c8;
+      --accent:    #0052cc;
+      --accent-bg: #eaf0fb;
+      --green:     #027a48;
+      --green-bg:  #e6f4ee;
+      --sans:      'Sora', sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+      --r:         10px;
+      --r-sm:      6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.25rem, 5vw, 3.5rem);
+    }
+    .nav-name { font-size: 0.875rem; font-weight: 600; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; color: var(--ink-3); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.8rem; font-weight: 600;
+      background: var(--ink); color: #fff;
+      padding: 0.45rem 1.1rem; border-radius: 99px;
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: #222; }
+
+    /* LAYOUT */
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 3.5rem); }
+    .divider { border: none; border-top: 1px solid var(--border); }
+    .section { padding: clamp(3rem, 6vw, 4.5rem) 0; }
+
+    /* HERO */
+    .hero { padding: clamp(4rem, 9vw, 7rem) 0 clamp(3rem, 6vw, 5rem); }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 140px;
+      gap: 2.5rem; align-items: start;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-bg);
+      padding: 0.3rem 0.85rem; border-radius: 99px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.03em;
+      margin-bottom: 1.4rem;
+    }
+    .hero-sub { font-size: 1rem; color: var(--ink-2); max-width: 560px; line-height: 1.8; margin-bottom: 2.25rem; font-weight: 400; }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--sans); font-size: 0.825rem; font-weight: 600;
+      padding: 0.65rem 1.4rem; border-radius: 99px; cursor: pointer;
+      transition: all 0.18s; border: 1.5px solid transparent;
+    }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-dark:hover { background: #1a1a1a; transform: translateY(-1px); }
+    .btn-border { background: transparent; color: var(--ink); border-color: var(--border-2); }
+    .btn-border:hover { border-color: var(--ink); background: var(--bg-2); }
+    .hero-avatar {
+      width: 130px; height: 130px; border-radius: 50%;
+      object-fit: cover; border: 2px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07); justify-self: end;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      margin-top: 2.5rem; padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-val { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; }
+    .stat-label { font-size: 0.78rem; color: var(--ink-3); font-weight: 500; margin-top: 0.1rem; }
+
+    /* SECTION HEADS */
+    .sec-eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+    }
+    .sec-title {
+      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700;
+      letter-spacing: -0.025em; margin-bottom: 2.5rem;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
+    .about-text p { color: var(--ink-2); line-height: 1.85; margin-bottom: 1.1rem; font-size: 0.95rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .info-list { list-style: none; display: flex; flex-direction: column; }
+    .info-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-size: 0.875rem;
+    }
+    .info-item:first-child { border-top: 1px solid var(--border); }
+    .info-key { color: var(--ink-3); font-weight: 500; flex-shrink: 0; }
+    .info-val { color: var(--ink); font-weight: 500; text-align: right; }
+    .info-val a { color: var(--accent); }
+    .info-val a:hover { text-decoration: underline; }
+
+    /* SKILLS */
+    .skills-bg { background: var(--bg-2); }
+    .skills-cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
+    .skill-group { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 1.25rem 1.4rem; }
+    .skill-group-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .pill { font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.7rem; border-radius: 99px; background: var(--bg-2); color: var(--ink-2); border: 1px solid var(--border); }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-card { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; padding: 2.25rem 0; border-top: 1px solid var(--border); }
+    .exp-card:last-child { border-bottom: 1px solid var(--border); }
+    .exp-company { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .exp-date { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-4); }
+    .exp-role { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.85rem; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .exp-bullets li { font-size: 0.875rem; color: var(--ink-2); padding-left: 1.1rem; position: relative; line-height: 1.7; }
+    .exp-bullets li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.25rem; }
+    .proj-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--r);
+      padding: 1.6rem; display: flex; flex-direction: column; gap: 0.85rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; cursor: pointer;
+    }
+    .proj-card:hover { border-color: #b3c3e0; box-shadow: 0 6px 28px rgba(0,82,204,0.07); transform: translateY(-2px); }
+    .proj-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+    .proj-icon { width: 40px; height: 40px; border-radius: var(--r-sm); background: var(--accent-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .proj-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .proj-arrow { color: var(--ink-4); transition: color 0.15s, transform 0.15s; }
+    .proj-card:hover .proj-arrow { color: var(--accent); transform: translate(2px,-2px); }
+    .proj-arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .proj-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 99px; background: var(--green-bg); color: var(--green); border: 1px solid #b3ddc8; width: fit-content; }
+    .proj-name { font-size: 0.975rem; font-weight: 700; letter-spacing: -0.01em; }
+    .proj-desc { font-size: 0.845rem; color: var(--ink-3); line-height: 1.75; flex: 1; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .proj-tag { font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 99px; background: var(--bg-2); color: var(--ink-3); border: 1px solid var(--border); }
+    .proj-tag.hi { background: var(--accent-bg); color: var(--accent); border-color: #b3c3e0; }
+
+    /* AWARDS */
+    .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .award-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; }
+    .award-icon { font-size: 1.5rem; line-height: 1; }
+    .award-title { font-size: 0.925rem; font-weight: 700; letter-spacing: -0.01em; }
+    .award-body { font-size: 0.82rem; color: var(--ink-3); line-height: 1.7; }
+
+    /* CONTACT */
+    .contact-band { background: var(--ink); color: #fff; }
+    .contact-inner {
+      max-width: 1080px; margin: 0 auto;
+      padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.25rem, 5vw, 3.5rem);
+      display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+    }
+    .contact-heading { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.6rem; }
+    .contact-sub { font-size: 0.9rem; color: #888; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.65rem; }
+    .contact-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; padding: 0.6rem 1.3rem; border-radius: 99px; transition: all 0.18s; white-space: nowrap; }
+    .cl-white { background: #fff; color: var(--ink); }
+    .cl-white:hover { background: #f0f0f0; }
+    .cl-ghost { background: transparent; color: #fff; border: 1.5px solid #333; }
+    .cl-ghost:hover { border-color: #666; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 1.5rem clamp(1.25rem, 5vw, 3.5rem); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    footer p { font-size: 0.78rem; color: var(--ink-4); }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-avatar { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .exp-card { grid-template-columns: 1fr; gap: 0.75rem; }
+      .nav-links, .nav-cta { display: none; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .contact-links { flex-direction: row; flex-wrap: wrap; }
+      .hero-stats { gap: 1.5rem; }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .hero-badge   { animation: fadeUp 0.45s ease both; }
+    .hero h1      { animation: fadeUp 0.5s  0.07s ease both; }
+    .hero-sub     { animation: fadeUp 0.5s  0.14s ease both; }
+    .hero-actions { animation: fadeUp 0.5s  0.21s ease both; }
+    .hero-stats   { animation: fadeUp 0.5s  0.28s ease both; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Shivansh Singh Bhadouria</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://www.linkedin.com/in/sbhadouria" target="_blank" rel="noopener">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    Connect
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="wrap">
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span aria-hidden="true"></span>Open to opportunities</div>
+        <h1>AI / ML Engineer.<br>Backend Systems.<br>Production AI.</h1>
+        <p class="hero-sub">
+          I design and ship production-grade AI systems — RAG engines, LLM pipelines, on-device inference — and build the high-throughput Java backends that power them. Currently at SITA Aero, building AI for the aviation industry.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#projects">View projects</a>
+          <a class="btn btn-border" href="https://github.com/Shivansh-Commits" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <a class="btn btn-border" href="mailto:shivanshbhadouria7@gmail.com">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-val">94%</div>
+            <div class="stat-label">Reduction in query resolution time</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">70%</div>
+            <div class="stat-label">Faster customer issue resolution</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">2x</div>
+            <div class="stat-label">BRAVO performance awards at SITA</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">8.78</div>
+            <div class="stat-label">GPA — B.Tech CS, AI and Data Science</div>
+          </div>
+        </div>
+      </div>
+      <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/61106694?v=4" alt="Shivansh Singh Bhadouria" />
+    </div>
+  </section>
+</div>
+
+<hr class="divider" />
+
+<!-- ABOUT -->
+<div class="wrap">
+  <section class="section" id="about">
+    <p class="sec-eyebrow">About</p>
+    <h2 class="sec-title">Engineer. Builder. Problem solver.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a software developer turned AI engineer with a deep interest in making language models practical and reliable in production. My work spans designing RAG pipelines, building hybrid retrieval systems, implementing on-device inference, and engineering the Java microservices backends that support it all.</p>
+        <p>At SITA Aero, I led the full-stack development of ARIA — an AI assistant for aviation standards compliance that cut expert query resolution from 15–30 minutes to under 10 seconds. Before that, at HSBC, I built and owned secure banking-grade REST APIs deployed on AWS.</p>
+        <p>I hold an Oracle Certified AI Foundations Associate certification and a B.Tech in Computer Science with a specialisation in Data Science and AI from Graphic Era University, graduating with a GPA of 8.78/10.</p>
+      </div>
+      <ul class="info-list">
+        <li class="info-item"><span class="info-key">Current role</span><span class="info-val">AI Engineer, SITA Aero</span></li>
+        <li class="info-item"><span class="info-key">Location</span><span class="info-val">India</span></li>
+        <li class="info-item"><span class="info-key">Education</span><span class="info-val">B.Tech CS — AI &amp; DS, GPA 8.78</span></li>
+        <li class="info-item"><span class="info-key">Primary stack</span><span class="info-val">Java 21 · Python · Spring Boot</span></li>
+        <li class="info-item"><span class="info-key">Cloud</span><span class="info-val">Azure · AWS</span></li>
+        <li class="info-item"><span class="info-key">Phone</span><span class="info-val">+91 9958459886</span></li>
+        <li class="info-item"><span class="info-key">Email</span><span class="info-val"><a href="mailto:shivanshbhadouria7@gmail.com">shivanshbhadouria7@gmail.com</a></span></li>
+        <li class="info-item"><span class="info-key">GitHub</span><span class="info-val"><a href="https://github.com/Shivansh-Commits" target="_blank" rel="noopener">Shivansh-Commits</a></span></li>
+        <li class="info-item"><span class="info-key">LinkedIn</span><span class="info-val"><a href="https://www.linkedin.com/in/sbhadouria" target="_blank" rel="noopener">linkedin.com/in/sbhadouria</a></span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<hr class="divider" />
+
+<!-- SKILLS -->
+<div class="skills-bg">
+  <div class="wrap">
+    <div class="section">
+      <p class="sec-eyebrow">Skills</p>
+      <h2 class="sec-title">Technical expertise.</h2>
+      <div class="skills-cols">
+        <div class="skill-group">
+          <p class="skill-group-title">AI / ML</p>
+          <div class="skill-pills">
+            <span class="pill">LLMs</span><span class="pill">RAG Systems</span><span class="pill">Hybrid Search</span>
+            <span class="pill">Vector Search</span><span class="pill">BM25</span><span class="pill">ONNX Runtime</span>
+            <span class="pill">On-Device Inference</span><span class="pill">Semantic Caching</span>
+            <span class="pill">Prompt Engineering</span><span class="pill">Embeddings</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Languages</p>
+          <div class="skill-pills">
+            <span class="pill">Java 21</span><span class="pill">Python</span><span class="pill">SQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Backend &amp; Frameworks</p>
+          <div class="skill-pills">
+            <span class="pill">Spring Boot</span><span class="pill">Spring Security</span>
+            <span class="pill">Apache Kafka</span><span class="pill">Microservices</span>
+            <span class="pill">REST APIs</span><span class="pill">JWT / RBAC</span>
+            <span class="pill">JPA</span><span class="pill">Jackson</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Cloud &amp; DevOps</p>
+          <div class="skill-pills">
+            <span class="pill">Azure</span><span class="pill">Azure OpenAI</span>
+            <span class="pill">Azure AI Foundry</span><span class="pill">AWS EC2 / RDS / S3</span>
+            <span class="pill">Docker</span><span class="pill">Kubernetes</span>
+            <span class="pill">CI/CD</span><span class="pill">Linux</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Data</p>
+          <div class="skill-pills">
+            <span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">MariaDB</span>
+            <span class="pill">Pandas</span><span class="pill">Scikit-learn</span><span class="pill">Matplotlib</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Tools</p>
+          <div class="skill-pills">
+            <span class="pill">Git</span><span class="pill">Postman</span><span class="pill">Prometheus</span>
+            <span class="pill">Spring Boot Actuators</span><span class="pill">GitHub Copilot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- EXPERIENCE -->
+<div class="wrap">
+  <section class="section" id="experience">
+    <p class="sec-eyebrow">Experience</p>
+    <h2 class="sec-title">Where I have worked.</h2>
+    <div class="exp-list">
+      <div class="exp-card">
+        <div class="exp-meta">
+          <p class="exp-company">SITA Aero</p>
+          <p class="exp-date">Mar 2025 – Present</p>
+        </div>
+        <div>
+          <p class="exp-role">Software Developer → AI Engineer</p>
+          <ul class="exp-bullets">
+            <li>Led end-to-end design and delivery of ARIA, a production AI assistant for aviation standards compliance — reduced expert query resolution time by 94% (15–30 minutes to under 10 seconds) using LLMs, RAG, and a deterministic validation layer.</li>
+            <li>Owned a high-throughput Java microservices platform used by multiple airlines to transmit structured traveler data to government authorities; integrated Apache Kafka for event-driven, fault-tolerant pipelines at scale.</li>
+            <li>Built an automated Root Cause Analysis Engine that eliminated manual log investigation, reducing customer issue resolution time by 70% — recognised with 2 performance awards (BRAVO) at SITA.</li>
+            <li>Deployed and maintained production services on Microsoft Azure, ensuring high availability for mission-critical aviation data flows.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-meta">
+          <p class="exp-company">HSBC</p>
+          <p class="exp-date">Aug 2022 – Apr 2024</p>
+        </div>
+        <div>
+          <p class="exp-role">Software Engineer</p>
+          <ul class="exp-bullets">
+            <li>Built and owned secure REST APIs in Spring Boot for banking-grade financial systems deployed on AWS (EC2, RDS, S3) serving real-time transactional workloads.</li>
+            <li>Implemented API security with JWT authentication and RBAC meeting HSBC compliance requirements; reduced production incident detection time via Prometheus monitoring.</li>
+            <li>Streamlined deployments via Azure DevOps CI/CD pipelines, reducing release cycle friction across multiple environments.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<div class="wrap">
+  <section class="section" id="projects">
+    <p class="sec-eyebrow">Selected projects</p>
+    <h2 class="sec-title">Things I have built.</h2>
+    <div class="projects-grid">
+
+      <a href="https://github.com/Shivansh-Commits/Aviation-RAG" target="_blank" rel="noopener" class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <span class="proj-badge">Production — SITA Aero</span>
+        <p class="proj-name">ARIA — Aviation AI Assistant</p>
+        <p class="proj-desc">Full-stack production RAG system for aviation standards compliance. Multi-turn conversational assistant and one-click compliance analyzer. Query intent classifier (6 categories) routes each question to the optimal retrieval strategy. On-device embedding inference using MiniLM-L6-v2, ONNX Runtime, under 50ms latency. Semantic response cache serves repeated queries in under 10ms at zero LLM cost.</p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">Java 21</span><span class="proj-tag hi">RAG</span><span class="proj-tag hi">GPT-4.1</span>
+          <span class="proj-tag">Azure OpenAI</span><span class="proj-tag">ONNX Runtime</span><span class="proj-tag">JavaFX</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Shivansh-Commits/Aviation-RAG" target="_blank" rel="noopener" class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <span class="proj-badge">Production — SITA Aero</span>
+        <p class="proj-name">Aviation Incident Analysis Pipeline</p>
+        <p class="proj-desc">Hybrid search engine combining custom BM25 (built from scratch in Java), semantic vector search, and Reciprocal Rank Fusion. Two-model LLM pipeline: GPT-4.1 extracts structured data from raw EDIFACT messages at temperature=0 for determinism; GPT-4o performs evidence-grounded root cause analysis. Preserves data anomaly signals for forensic auditability in regulated investigations.</p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">Java 21</span><span class="proj-tag hi">Hybrid RAG</span><span class="proj-tag hi">BM25</span>
+          <span class="proj-tag">GPT-4o</span><span class="proj-tag">Azure AI Foundry</span><span class="proj-tag">RRF</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Shivansh-Commits/Context-Forge" target="_blank" rel="noopener" class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg></div>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <span class="proj-badge">Open-source library — MIT</span>
+        <p class="proj-name">Context Forge</p>
+        <p class="proj-desc">Schema-agnostic Java library that converts any hierarchical JSON specification into LLM-friendly plain text via Structured Specification Injection (SSI). Produces a structure tree (node ordering, cardinality, group boundaries) and per-node detail specs — injected as Tier 1 normative context in a RAG pipeline to eliminate specification hallucination. Works with EDIFACT messages, REST API specs, database schemas, and any domain-specific JSON.</p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">Java 21</span><span class="proj-tag hi">LLMs</span><span class="proj-tag hi">RAG</span>
+          <span class="proj-tag">SSI</span><span class="proj-tag">Jackson</span><span class="proj-tag">Maven</span><span class="proj-tag">Open Source</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Shivansh-Commits/L3-Engine" target="_blank" rel="noopener" class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <p class="proj-name">L3 Engine</p>
+        <p class="proj-desc">Production-grade Java Spring Boot engine with 4 shipped releases (latest v4.2.0.0). Demonstrates strong software engineering practices with 137+ commits, full Maven build pipeline, and comprehensive user documentation.</p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">Java</span><span class="proj-tag">Spring Boot</span>
+          <span class="proj-tag">Maven</span><span class="proj-tag">v4.2 released</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Shivansh-Commits/Len-Den" target="_blank" rel="noopener" class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <p class="proj-name">Len-Den — Financial Manager</p>
+        <p class="proj-desc">Full-featured desktop application for lending and borrowing management built with Java and JavaFX. MySQL-backed persistence, SceneBuilder UI, and end-to-end transaction workflows. 389+ commits reflecting sustained development effort.</p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">Java</span><span class="proj-tag">JavaFX</span>
+          <span class="proj-tag">MySQL</span><span class="proj-tag">SceneBuilder</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Shivansh-Commits/Food-Demand-Forecasting-DATA-SCIENCE-CHALLANGE" target="_blank" rel="noopener" class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <p class="proj-name">Food Demand Forecasting</p>
+        <p class="proj-desc">ML solution for the Genpact Data Science Challenge — forecasting weekly food demand across fulfilment centers. Full pipeline: EDA, One-Hot Encoding, feature normalisation, cross-validation, and model evaluation with MSE and Pearson correlation. Includes full project report.</p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">Python</span><span class="proj-tag">Scikit-learn</span>
+          <span class="proj-tag">Pandas</span><span class="proj-tag">Jupyter</span><span class="proj-tag">Genpact</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Shivansh-Commits/Covid-Portal-Web-Project" target="_blank" rel="noopener" class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <p class="proj-name">Covid-19 Donor Portal</p>
+        <p class="proj-desc">Full-stack web application enabling people to find or register as plasma and blood donors during the Covid-19 pandemic. Built with HTML, PHP, CSS, AJAX-powered dynamic interactions, and a MySQL backend.</p>
+        <div class="proj-tags">
+          <span class="proj-tag hi">PHP</span><span class="proj-tag">HTML / CSS</span>
+          <span class="proj-tag">JavaScript</span><span class="proj-tag">AJAX</span><span class="proj-tag">MySQL</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+</div>
+
+<hr class="divider" />
+
+<!-- AWARDS -->
+<div class="wrap">
+  <section class="section" id="awards">
+    <p class="sec-eyebrow">Recognition</p>
+    <h2 class="sec-title">Awards and certifications.</h2>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <p class="award-title">BRAVO Award x2 — SITA Aero</p>
+        <p class="award-body">Recognised twice (Oct 2025 and Jan 2026) for shipping high-impact AI products and taking ownership of critical production challenges at SITA Aero.</p>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">📜</div>
+        <p class="award-title">Oracle Certified AI Foundations Associate</p>
+        <p class="award-body">Oracle certification covering LLMs, RAG architectures, RNNs, and transformer model fundamentals.</p>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">☁️</div>
+        <p class="award-title">IBM Cloud Application Developer</p>
+        <p class="award-body">IBM Mastery and Explorer certifications in cloud application development and deployment.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-band" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-heading">Open to opportunities.</h2>
+      <p class="contact-sub">Reach out for roles, collaborations, or a conversation about AI systems.</p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link cl-white" href="mailto:shivanshbhadouria7@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        shivanshbhadouria7@gmail.com
+      </a>
+      <a class="contact-link cl-ghost" href="https://www.linkedin.com/in/sbhadouria" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-link cl-ghost" href="https://github.com/Shivansh-Commits" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Shivansh Singh Bhadouria</p>
+  <p>Built with HTML · Hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
